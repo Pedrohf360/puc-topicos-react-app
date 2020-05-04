@@ -1,4 +1,4 @@
-# SPA com ReactJS e React Nativa
+# SPA com ReactJS e React Native
 Criação de SPA utilizando ReactJS e React Native, para disciplina de Tópicos de SI.
 
 Cronograma recomendado:
