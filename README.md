@@ -13,3 +13,8 @@ Planeje qual será a sua aplicação híbrida na unidade 4.
 
 ## 3ª semana
 Comece a implementação da sua aplicação usando React, mesmo que ainda para a web. 
+
+### Observações
+- Em um framework, o fluxo de controle não é determinado pelo programador, mas pelo próprio framework. Isso é chamado de inversão de controle.
+- Um programador não cria uma aplicação do zero; ele estende o framework, adicionando código que substitui ou adiciona funcionalidades.
+- Um framework possui parte do código que não é modificável. De uma forma geral, o framework não deve ser modificado, mas estendido.
