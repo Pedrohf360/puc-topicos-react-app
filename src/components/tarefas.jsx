@@ -63,7 +63,7 @@ class Tarefas extends Component {
             tarefas.length > 0 && (
                 <ul className="list-group mt-4">
                     {tarefas.map((t, i) => (
-                        <Tarefa key={i} />
+                        <Tarefa key={i} descricao={t} />
                     ))}
                 </ul>
             )
