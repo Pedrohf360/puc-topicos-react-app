@@ -63,12 +63,33 @@ class Tarefas extends Component {
             tarefas.length > 0 && (
                 <ul className="list-group mt-4">
                     {tarefas.map((t, i) => (
-                        <Tarefa key={i} descricao={t} />
+                        <Tarefa
+                            key={i}
+                            tarefa={t}
+                            onAltera={this.alteraTarefa}
+                            onApaga={this.apagaTarefa}
+                        />
                     ))}
                 </ul>
             )
         );
     }
+
+    alteraTarefa = (t, d) => {
+        const i = this.state.tarefas.indexOf(t);
+        const novaLista = [...this.state.tarefas];
+        novaLista[i] = d;
+        this.setState({
+            tarefas: novaLista,
+        });
+    };
+
+    apagaTarefa = (t) => {
+        const novaLista = this.state.tarefas.filter((tarefa) => tarefa !== t);
+        this.setState({
+            tarefas: novaLista,
+        });
+    };
 }
 
 export default Tarefas;

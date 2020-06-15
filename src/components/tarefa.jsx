@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class Tarefa extends Component {
     state = {
-        descricao: this.props.descricao,
+        descricao: this.props.tarefa,
         altera: false,
     };
 
@@ -28,10 +28,13 @@ class Tarefa extends Component {
         else
             return (
                 <div className="align-middle">
-                    {this.state.descricao}
+                    {this.props.tarefa}
                     <span className="btn-group float-right">
                         <button className="btn btn-info btn-sm" onClick={this.edita}>
                             <FontAwesomeIcon icon={faEdit} />
+                        </button>
+                        <button className="btn btn-warning btn-sm" onClick={this.apaga}>
+                            <FontAwesomeIcon icon={faTrash} />
                         </button>
                     </span>
                 </div>
@@ -44,9 +47,9 @@ class Tarefa extends Component {
         });
     };
 
-    alteraTarefa = (e) => {
+    alteraTarefa = (evento) => {
         this.setState({
-            descricao: e.target.value,
+            descricao: evento.target.value,
         });
     };
 
@@ -54,10 +57,15 @@ class Tarefa extends Component {
         this.setState({
             altera: false,
         });
+        this.props.onAltera(this.props.tarefa, this.state.descricao);
     };
 
     teclaEnter = (e) => {
         if (e.key === 'Enter') this.confirma();
+    };
+
+    apaga = () => {
+        this.props.onApaga(this.props.tarefa);
     };
 }
 
