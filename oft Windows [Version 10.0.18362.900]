@@ -1,0 +1,36 @@
+[33mcommit d6e4b8c7475b567c291cd4f91a9ef3314c58e1b0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 22f35ca 6f6ffd4
+Author: Pedro H. Ferreira Fonseca <pedro.henriqueff10@gmail.com>
+Date:   Sun Jun 14 21:21:38 2020 -0300
+
+    Merge branch 'master' of https://github.com/Pedrohf360/puc-topicos-react-app
+
+[33mcommit 22f35ca79eb3d58f7d5d6bd4743d3387379c1f20[m
+Author: Pedro H. Ferreira Fonseca <pedro.henriqueff10@gmail.com>
+Date:   Sun Jun 14 21:18:21 2020 -0300
+
+    Initial commit
+
+[33mcommit 6f6ffd490ee3c5726c5716421bf347c99ca3bb38[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Pedro H. Ferreira Fonseca <pedro.henriqueff10@gmail.com>
+Date:   Thu Jun 11 21:44:17 2020 -0300
+
+    Update README.md
+
+[33mcommit 61d706115dd788744b879d53a99950ab91a14dbd[m
+Author: Pedro H. Ferreira Fonseca <pedro.henriqueff10@gmail.com>
+Date:   Sun May 3 23:25:36 2020 -0300
+
+    Update README.md
+
+[33mcommit 4055ab2b327e38ca20c4dc829e7a9932bf0e8eff[m
+Author: Pedro H. Ferreira Fonseca <pedro.henriqueff10@gmail.com>
+Date:   Sun May 3 23:25:21 2020 -0300
+
+    Update README.md
+
+[33mcommit 4c2377357bbead02e09f2ee25af698a41a2c09ba[m
+Author: Pedro H. Ferreira Fonseca <pedro.henriqueff10@gmail.com>
+Date:   Sun May 3 23:24:27 2020 -0300
+
+    Initial commit
