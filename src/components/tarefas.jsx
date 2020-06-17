@@ -67,7 +67,6 @@ class Tarefas extends Component {
                             key={i}
                             tarefa={t}
                             onAltera={this.alteraTarefa}
-                            onApaga={this.apagaTarefa}
                         />
                     ))}
                 </ul>
