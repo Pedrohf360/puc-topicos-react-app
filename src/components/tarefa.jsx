@@ -4,7 +4,7 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class Tarefa extends Component {
     state = {
-        descricao: this.props.tarefa,
+        descricao: this.props.descricao,
         altera: false,
     };
 
@@ -13,7 +13,7 @@ class Tarefa extends Component {
     }
 
     conteudo() {
-        if (this.state.altera)
+        if (this.state.altera) {
             return (
                 <input
                     className="form-control"
@@ -25,10 +25,10 @@ class Tarefa extends Component {
                     autoFocus
                 />
             );
-        else
+        } else {
             return (
                 <div className="align-middle">
-                    {this.props.tarefa}
+                    {this.props.descricao}
                     <span className="btn-group float-right">
                         <button className="btn btn-info btn-sm" onClick={this.edita}>
                             <FontAwesomeIcon icon={faEdit} />
@@ -39,6 +39,7 @@ class Tarefa extends Component {
                     </span>
                 </div>
             );
+        }
     }
 
     edita = () => {
@@ -47,9 +48,9 @@ class Tarefa extends Component {
         });
     };
 
-    alteraTarefa = (evento) => {
+    alteraTarefa = (e) => {
         this.setState({
-            descricao: evento.target.value,
+            descricao: e.target.value,
         });
     };
 
@@ -57,7 +58,7 @@ class Tarefa extends Component {
         this.setState({
             altera: false,
         });
-        this.props.onAltera(this.props.tarefa, this.state.descricao);
+        this.props.onAltera(this.props.descricao, this.state.descricao);
     };
 
     teclaEnter = (e) => {
@@ -65,8 +66,21 @@ class Tarefa extends Component {
     };
 
     apaga = () => {
-        this.props.onApaga(this.props.tarefa);
+        this.props.onApaga(this.props.descricao);
     };
-}
 
+    constructor(props) {
+        super(props);
+        console.log('constructor: ', this.props.descricao);
+    }
+    componentDidMount() {
+        console.log('componentDidUpdate: ', this.props.descricao);
+    }
+    componentDidUpdate() {
+        console.log('componentDidUpdate: ', this.props.descricao);
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount: ', this.props.descricao);
+    }
+}
 export default Tarefa;
