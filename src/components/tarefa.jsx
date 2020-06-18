@@ -1,86 +1,57 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-class Tarefa extends Component {
-    state = {
-        descricao: this.props.descricao,
-        altera: false,
+function Tarefa(props) {
+    const [descricao, setDescricao] = useState(props.descricao);
+    const [altera, setAltera] = useState(false);
+
+    useEffect(() => {
+        setDescricao(props.descricao);
+    }, [props.descricao]);
+
+    // Funções para tratamento dos eventos
+    const confirma = (e) => {
+        setAltera(false);
+        props.onAltera(props.descricao, descricao);
+    };
+    const teclaEnter = (e) => {
+        if (e.key === 'Enter') confirma();
     };
 
-    render() {
-        return <li className="list-group-item">{this.conteudo()}</li>;
-    }
-
-    conteudo() {
-        if (this.state.altera) {
-            return (
+    return (
+        <li className="list-group-item">
+            {altera ? (
                 <input
                     className="form-control"
                     type="text"
-                    value={this.state.descricao}
-                    onChange={this.alteraTarefa}
-                    onBlur={this.confirma}
-                    onKeyPress={this.teclaEnter}
+                    value={descricao}
+                    onChange={(e) => setDescricao(e.target.value)}
+                    onBlur={confirma}
+                    onKeyPress={teclaEnter}
                     autoFocus
                 />
-            );
-        } else {
-            return (
-                <div className="align-middle">
-                    {this.props.descricao}
-                    <span className="btn-group float-right">
-                        <button className="btn btn-info btn-sm" onClick={this.edita}>
-                            <FontAwesomeIcon icon={faEdit} />
-                        </button>
-                        <button className="btn btn-warning btn-sm" onClick={this.apaga}>
-                            <FontAwesomeIcon icon={faTrash} />
-                        </button>
-                    </span>
-                </div>
-            );
-        }
-    }
-
-    edita = () => {
-        this.setState({
-            altera: true,
-        });
-    };
-
-    alteraTarefa = (e) => {
-        this.setState({
-            descricao: e.target.value,
-        });
-    };
-
-    confirma = () => {
-        this.setState({
-            altera: false,
-        });
-        this.props.onAltera(this.props.descricao, this.state.descricao);
-    };
-
-    teclaEnter = (e) => {
-        if (e.key === 'Enter') this.confirma();
-    };
-
-    apaga = () => {
-        this.props.onApaga(this.props.descricao);
-    };
-
-    constructor(props) {
-        super(props);
-        console.log('constructor: ', this.props.descricao);
-    }
-    componentDidMount() {
-        console.log('componentDidUpdate: ', this.props.descricao);
-    }
-    componentDidUpdate() {
-        console.log('componentDidUpdate: ', this.props.descricao);
-    }
-    componentWillUnmount() {
-        console.log('componentWillUnmount: ', this.props.descricao);
-    }
+            ) : (
+                    <div className="align-middle">
+                        {props.descricao}
+                        <span className="btn-group float-right">
+                            <button
+                                className="btn btn-info btn-sm"
+                                onClick={() => setAltera(true)}
+                            >
+                                <FontAwesomeIcon icon={faEdit} />
+                            </button>
+                            <button
+                                className="btn btn-warning btn-sm"
+                                onClick={() => props.onApaga(props.descricao)}
+                            >
+                                <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                        </span>
+                    </div>
+                )}
+        </li>
+    );
 }
+
 export default Tarefa;

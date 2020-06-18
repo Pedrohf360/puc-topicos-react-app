@@ -1,58 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from './components/navbar';
 import Tarefas from './components/tarefas';
 
-class App extends Component {
-  state = {
-    tarefas: [],
-  };
+function App(props) {
+  // estado
+  let ts = JSON.parse(localStorage.getItem('tarefas'));
+  if (!ts) ts = [];
+  const [tarefas, setTarefas] = useState(ts);
 
-  constructor(props) {
-    super(props);
-    const t = JSON.parse(localStorage.getItem('tarefas'));
-    if (t) this.state.tarefas = t;
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem('tarefas', JSON.stringify(this.state.tarefas));
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <NavBar pendentes={this.state.tarefas.length} />
-        <div className="container">
-          <Tarefas
-            tarefas={this.state.tarefas}
-            onAdiciona={this.adicionaTarefa}
-            onAltera={this.alteraTarefa}
-            onApaga={this.apagaTarefa}
-          />
-        </div>
-      </React.Fragment>
-    );
-  }
-
-  adicionaTarefa = (t) => {
-    this.setState({
-      tarefas: [...this.state.tarefas, t],
-    });
-  };
-
-  alteraTarefa = (t, d) => {
-    const i = this.state.tarefas.indexOf(t);
-    const novaLista = [...this.state.tarefas];
+  // funções de tratamento de evento
+  const adicionaTarefa = (t) => setTarefas([...tarefas, t]);
+  const alteraTarefa = (t, d) => {
+    const i = tarefas.indexOf(t);
+    let novaLista = [...tarefas];
     novaLista[i] = d;
-    this.setState({
-      tarefas: novaLista,
-    });
+    setTarefas(novaLista);
   };
+  const apagaTarefa = (t) =>
+    setTarefas(tarefas.filter((tarefa) => tarefa !== t));
 
-  apagaTarefa = (t) => {
-    this.setState({
-      tarefas: this.state.tarefas.filter((tarefa) => tarefa !== t),
-    });
-  };
+  // atualização
+  useEffect(() => localStorage.setItem('tarefas', JSON.stringify(tarefas)));
+
+  // interface
+  return (
+    <React.Fragment>
+      <NavBar pendentes={tarefas.length} />
+      <div className="container">
+        <Tarefas
+          tarefas={tarefas}
+          onAdiciona={adicionaTarefa}
+          onAltera={alteraTarefa}
+          onApaga={apagaTarefa}
+        />
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default App;
